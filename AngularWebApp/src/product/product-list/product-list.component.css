@@ -1,0 +1,32 @@
+.product-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Each product takes a minimum width of 250px */
+  gap: 20px; /* Add gap between products */
+}
+
+.product-box {
+  border: 1px solid #e0e0e0;
+  margin-top: 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  background: #333;
+  color: white;
+}
+
+.product-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.product-details {
+  flex-grow: 1;
+}
+
+.add-to-cart {
+  margin-top: 10px;
+  text-align: left;
+}
+.add-to-cart-button {
+  background: #4CAF50;
+}

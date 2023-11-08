@@ -1,0 +1,26 @@
+<div *ngIf="loading">
+  <p>Loading products...</p>
+</div>
+
+<div *ngIf="error">
+  <p>{{ error }}</p>
+</div>
+
+<div *ngIf="products.length > 0">
+  <div class="product-container">
+    <div *ngFor="let product of products" class="product-box">
+      <img [src]="'https://localhost:7046/api/upload/GetImage/' + product.imageName" alt="{{ product.description || 'N/A' }}" class="product-image"><br />
+      <div class="product-details">
+        <b>{{ product.description || 'N/A' }}</b><br />
+        Pris: {{ product.basePrice | currency:'DKK':true }} <br />
+      </div>
+      <div class="add-to-cart">
+        <button (click)="addToCart(product)" class="add-to-cart-button">Læg i kurv</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!loading && products.length === 0 && !error">
+  <p>No products available.</p>
+</div>
