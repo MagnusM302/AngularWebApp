@@ -1,0 +1,24 @@
+.shop-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.shop-box {
+  border: 1px solid #e0e0e0;
+  margin-top: 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  background: #333;
+  color: white;
+}
+
+.shop-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.shop-details {
+  flex-grow: 1;
+}

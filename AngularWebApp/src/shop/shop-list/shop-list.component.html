@@ -1,1 +1,23 @@
-<p>shop-list works!</p>
+<div *ngIf="loading">
+  <p>Loading shops...</p>
+</div>
+
+<div *ngIf="error">
+  <p>{{ error }}</p>
+</div>
+
+<div *ngIf="shops.length > 0">
+  <div class="shop-container">
+    <div *ngFor="let shop of shops" class="shop-box">
+      <div class="shop-details">
+        <h3>{{ shop.name }}</h3><br />
+        {{ shop.type }} <br />
+        Lokation: {{ shop.location }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!loading && shops.length === 0 && !error">
+  <p>No shops available.</p>
+</div>
