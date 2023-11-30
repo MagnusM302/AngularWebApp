@@ -23,6 +23,23 @@ export class ProductService {
     return this.http.get<Product>(url);
   }
 
+  getProductsByShopId(shopId: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiUrl}/shops/${shopId}`);
+  }
+
+  getProductsByShopIdInt(shopId: number): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiUrl}/shops/${shopId}`);
+  }
+
+  getAllProductCategories(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/categories`);
+  }
+
+  getProductsByCategoryAndShop(category: string, shopId: number): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiUrl}/categories/${category}/shop/${shopId}`);
+  }
+
+
   // Create a new product
   createProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(this.apiUrl, product);

@@ -1,0 +1,11 @@
+<div *ngIf="loading">Loading categories...</div>
+<div *ngIf="error">{{ error }}</div>
+
+<div class="category-item" (click)="selectCategory('AllProducts')" [class.selected]="selectedCategory === 'AllProducts'">
+  <div>Alle</div>
+</div>
+<div *ngFor="let category of categories" class="category-item"
+     (click)="selectCategory(category)"
+     [class.selected]="category === selectedCategory">
+  <div>{{ category }}</div>
+</div>

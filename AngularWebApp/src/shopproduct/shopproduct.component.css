@@ -17,9 +17,9 @@
 .product-image {
   max-width: 100%;
   height: auto;
-  max-height: 150px;
+  max-height:170px;
 }
-
+  
 .product-details {
   flex-grow: 1;
 }
@@ -28,6 +28,8 @@
   margin-top: 10px;
   text-align: left;
 }
+
 .add-to-cart-button {
   background: #4CAF50;
 }
+

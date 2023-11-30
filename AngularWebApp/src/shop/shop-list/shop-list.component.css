@@ -22,3 +22,15 @@
 .shop-details {
   flex-grow: 1;
 }
+
+a {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.shop-button {
+  margin-top: 10px;
+  text-align: left;
+  background: #4CAF50;
+}

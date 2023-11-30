@@ -1,0 +1,24 @@
+<h2>{{ shop?.name }}</h2>
+<app-productcategory [selectedCategory]="selectedCategory"
+                     (categorySelected)="filterProductsByCategoryAndShop($event.category, +shopId!)"
+                     (selectedCategoryChange)="selectedCategory = $event">
+</app-productcategory>
+
+<div *ngIf="products.length > 0">
+  <div class="product-container">
+    <div *ngFor="let product of products" class="product-box">
+      <img [src]="'https://localhost:7046/api/upload/GetImage/' + product.imageName" alt="{{ product.description || 'N/A' }}" class="product-image"><br />
+      <div class="product-details">
+        <b>{{ product.description || 'N/A' }}</b><br />
+        Pris: {{ product.basePrice | currency:'DKK':true }} <br />
+        <div class="add-to-cart">
+          <button (click)="openProductDetails(product)" class="add-to-cart-button">Tilføj til kurv</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="products.length === 0">
+  <p>No products available for this shop.</p>
+</div>

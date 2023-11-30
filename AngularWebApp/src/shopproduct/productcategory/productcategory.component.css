@@ -1,0 +1,29 @@
+/* Add this CSS to your existing styles */
+
+* {
+  box-sizing: border-box;
+}
+
+.category-item {
+  flex: 0 0 calc(20% - 5px);
+  text-align: center;
+  margin: 10px;
+  padding: 5px;
+  border: 2px solid #333;
+  border-radius: 10px; /* Add border-radius for rounded corners */
+  transition: background-color 0.3s; /* Add a smooth transition for hover effect */
+}
+
+.category-item.selected {
+  background-color: green;
+  color: white;
+}
+
+.category-item:hover {
+  background-color: #ddd; /* Change the background color on hover */
+}
+
+.category-logo {
+  width: 50px;
+  height: 50px;
+}

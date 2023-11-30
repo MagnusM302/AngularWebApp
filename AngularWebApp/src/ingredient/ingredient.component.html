@@ -1,0 +1,4 @@
+<div *ngFor="let ingredient of ingredients">
+  <p>{{ ingredient.name }}</p>
+  <img [src]="'https://localhost:7046/api/upload/GetImage/' + ingredient.imageName" alt="{{ ingredient.name || 'N/A' }}" class="ingredient-image">
+</div>

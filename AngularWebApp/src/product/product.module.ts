@@ -4,11 +4,10 @@ import { ProductComponent } from './product.component';
 import { ProductListComponent } from './product-list/product-list.component';
 
 
-
 @NgModule({
   declarations: [
     ProductListComponent,
-    ProductComponent
+    ProductComponent,
   ],
   imports: [
     CommonModule

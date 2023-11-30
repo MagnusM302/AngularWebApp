@@ -10,9 +10,10 @@
   <div class="shop-container">
     <div *ngFor="let shop of shops" class="shop-box">
       <div class="shop-details">
-        <h3>{{ shop.name }}</h3><br />
+        <h3>{{ shop.name }}</h3>
         {{ shop.type }} <br />
-        Lokation: {{ shop.location }}
+        Lokation: {{ shop.location }} <br />
+        <button [routerLink]="['/shops', shop.id]" class="shop-button">Gå til shoppen</button>
       </div>
     </div>
   </div>

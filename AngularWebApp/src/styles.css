@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.normal-button {
+  background: #4CAF50;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.dialog-class {
+    position:center;
+    color: white;
+}
