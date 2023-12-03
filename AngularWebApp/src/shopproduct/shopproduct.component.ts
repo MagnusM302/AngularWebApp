@@ -4,7 +4,9 @@ import { ProductService } from 'src/services/product.service';
 import { ShopService } from '../services/shop.service';
 import { BasketService } from 'src/services/basketservice.service';
 import { Product } from 'src/product/product.interface';
+import { ComboService } from 'src/services/combo.service';
 import { Shop } from 'src/shop/shop.interface';
+import { Combo } from 'src/combo/combo.interface';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ProductdetailsComponent } from './productdetails/productdetails.component';
 
@@ -16,6 +18,7 @@ import { ProductdetailsComponent } from './productdetails/productdetails.compone
 export class ShopproductComponent implements OnInit {
   shop: Shop | null = null;
   products: Product[] = [];
+  combos: Combo[] = [];
   selectedProduct: any | null = null;
   shopId: string | null = null;
   selectedCategory: string | null = null;
@@ -26,6 +29,7 @@ export class ShopproductComponent implements OnInit {
     private productService: ProductService,
     private shopService: ShopService,
     private basketService: BasketService,
+    private comboService: ComboService,
     private dialog: MatDialog // Inject MatDialog
   ) { }
 
@@ -80,6 +84,15 @@ export class ShopproductComponent implements OnInit {
           },
           (error) => {
             console.error('Error fetching all products for the shop:', error);
+          }
+        );
+      } else if (category === 'AllCombos') {
+        this.comboService.getCombosByCategoryAndShop(shopId).subscribe(
+          (data) => {
+            this.combos = data;
+          },
+          (error) => {
+            console.error('Error fetching all combos for the shop:', error);
           }
         );
       } else {

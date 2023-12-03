@@ -4,6 +4,9 @@
 <div class="category-item" (click)="selectCategory('AllProducts')" [class.selected]="selectedCategory === 'AllProducts'">
   <div>Alle</div>
 </div>
+<div class="category-item" (click)="selectCategory('AllCombos')" [class.selected]="selectedCategory === 'AllCombos'">
+  <div>Combos</div>
+</div>
 <div *ngFor="let category of categories" class="category-item"
      (click)="selectCategory(category)"
      [class.selected]="category === selectedCategory">
