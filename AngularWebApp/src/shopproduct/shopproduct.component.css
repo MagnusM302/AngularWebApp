@@ -2,6 +2,8 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
   gap: 20px;
+  margin-left:10px;
+  margin-right:10px;
 }
 
 .product-box {
@@ -34,3 +36,18 @@
   background: #4CAF50;
 }
 
+.shop-header {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+h2 {
+  margin-right: 10px; /* Adjust the margin as needed to create space between the shop name and basket icon */
+}
+
+.basket-icon {
+  margin-bottom:15px;
+  width: 24px; 
+  height: 24px; 
+}

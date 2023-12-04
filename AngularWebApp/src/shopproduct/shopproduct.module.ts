@@ -6,11 +6,12 @@ import { IngredientModule } from 'src/ingredient/ingredient.module';
 import { ProductModule } from 'src/product/product.module';
 import { ProductcategoryComponent } from './productcategory/productcategory.component';
 import { ProductdetailsComponent } from './productdetails/productdetails.component';
+import { BasketDialogComponent } from './basket-dialog/basket-dialog.component';
 
 
 
 @NgModule({
-  declarations: [ShopproductComponent, ProductcategoryComponent, ProductdetailsComponent],
+  declarations: [ShopproductComponent, ProductcategoryComponent, ProductdetailsComponent, BasketDialogComponent],
   imports: [
     CommonModule,
     RouterModule, // Include RouterModule in the imports array

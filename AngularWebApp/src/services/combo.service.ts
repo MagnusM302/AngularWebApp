@@ -12,7 +12,7 @@ export class ComboService {
 
   constructor(private http: HttpClient) { }
 
-  getCombosByCategoryAndShop(shopId: number): Observable<Combo[]> {
+  getCombosByShop(shopId: number): Observable<Combo[]> {
     return this.http.get<Combo[]>(`${this.apiUrl}/shop/${shopId}`);
   }
 }

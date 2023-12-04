@@ -1,16 +1,21 @@
-<h2>{{ shop?.name }}</h2>
+<div class="shop-header">
+  <h2>{{ shop?.name }}</h2>
+  <img src="../assets/basket.svg" alt="Basket Icon" class="basket-icon" (click)="openBasketDialog()" />
+  <a (click)="openBasketDialog()" style="margin-bottom:10px; margin-left:5px;">Se din kurv</a>
+</div>
+
 <app-productcategory [selectedCategory]="selectedCategory"
                      (categorySelected)="filterProductsByCategoryAndShop($event.category, +shopId!)"
                      (selectedCategoryChange)="selectedCategory = $event">
 </app-productcategory>
 
-<div *ngIf="products.length > 0">
+<div *ngIf="selectedCategory !== 'AllCombos'">
   <div class="product-container">
     <div *ngFor="let product of products" class="product-box">
       <img [src]="'https://localhost:7046/api/upload/GetImage/' + product.imageName" alt="{{ product.description || 'N/A' }}" class="product-image"><br />
       <div class="product-details">
         <b>{{ product.description || 'N/A' }}</b><br />
-        Pris: {{ product.basePrice | currency:'DKK':true }} <br />
+        Pris: {{ product.basePrice | currency:'DKK':'code' }} <br />
         <div class="add-to-cart">
           <button (click)="openProductDetails(product)" class="add-to-cart-button">Tilføj til kurv</button>
         </div>
@@ -19,6 +24,22 @@
   </div>
 </div>
 
-<div *ngIf="products.length === 0">
+<div *ngIf="selectedCategory === 'AllCombos' || selectedCategory === 'AllProducts'">
+
+  <div class="product-container">
+    <div *ngFor="let combo of combos" class="product-box">
+      <img [src]="'https://localhost:7046/api/upload/GetImage/' + combo.imageName" alt="{{ combo.name || 'N/A' }}" class="product-image"><br />
+      <div class="product-details">
+        <b>{{ combo.name || 'N/A' }}</b><br />
+        Pris: {{ combo.comboPrice | currency:'DKK':'code' }} <br />
+        <div class="add-to-cart">
+          <button class="add-to-cart-button">Tilføj til kurv</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="products.length === 0 && combos.length === 0">
   <p>No products available for this shop.</p>
 </div>

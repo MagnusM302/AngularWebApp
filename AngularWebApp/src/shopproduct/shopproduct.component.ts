@@ -9,6 +9,7 @@ import { Shop } from 'src/shop/shop.interface';
 import { Combo } from 'src/combo/combo.interface';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ProductdetailsComponent } from './productdetails/productdetails.component';
+import { BasketDialogComponent } from './basket-dialog/basket-dialog.component';
 
 @Component({
   selector: 'app-shopproduct',
@@ -22,6 +23,8 @@ export class ShopproductComponent implements OnInit {
   selectedProduct: any | null = null;
   shopId: string | null = null;
   selectedCategory: string | null = null;
+  basketItems: any;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -30,7 +33,7 @@ export class ShopproductComponent implements OnInit {
     private shopService: ShopService,
     private basketService: BasketService,
     private comboService: ComboService,
-    private dialog: MatDialog // Inject MatDialog
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -63,16 +66,28 @@ export class ShopproductComponent implements OnInit {
     }
   }
 
+
+
   openProductDetails(product: Product) {
     const dialogConfig: MatDialogConfig = {
       data: { product: product },
       panelClass: 'dialog-class',
       height: '400px',
       width: '200px',
-      hasBackdrop: true, // Ensure that the backdrop is present
+      hasBackdrop: true
     };
 
     const dialogRef = this.dialog.open(ProductdetailsComponent, dialogConfig);
+
+    // Subscribe to the afterClosed event to get the result when the dialog is closed
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && 'id' in result) {
+        this.basketService.addToBasket(result as Product);
+      } else {
+        // Add the product to the basket
+        this.basketService.addToBasket(result);
+      }
+    });
   }
 
   filterProductsByCategoryAndShop(category: string, shopId: number) {
@@ -87,9 +102,10 @@ export class ShopproductComponent implements OnInit {
           }
         );
       } else if (category === 'AllCombos') {
-        this.comboService.getCombosByCategoryAndShop(shopId).subscribe(
+        this.comboService.getCombosByShop(shopId).subscribe(
           (data) => {
             this.combos = data;
+            console.log('Combos:', this.combos); // Log the combos for debugging
           },
           (error) => {
             console.error('Error fetching all combos for the shop:', error);
@@ -119,5 +135,19 @@ export class ShopproductComponent implements OnInit {
     this.filterProductsByCategoryAndShop(category, +this.shopId!);
     console.log('Selected Category:', this.selectedCategory);
   }
+
+  openBasketDialog(): void {
+    console.log('Basket Items:', this.basketItems);
+    const dialogRef = this.dialog.open(BasketDialogComponent, {
+      width: '400px', 
+      height: '800px',
+      data: { basketItems: this.basketService.getBasket() },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialog closed with result:', result);
+    });
+  }
+
 
 }

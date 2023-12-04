@@ -1,0 +1,21 @@
+<div class="dialog-class">
+  <h2>Din kurv</h2>
+  <div *ngIf="data.basketItems && data.basketItems.length > 0; else noItems">
+    <div *ngFor="let item of data.basketItems">
+      {{ item.description }} - {{ item.basePrice | currency:'DKK':'code' }}
+      <p>Antal: {{ item.quantity }}</p>
+
+
+    </div>
+  </div>
+
+
+
+  <ng-template #noItems>
+    <p>Ingen varer i kurven.</p>
+  </ng-template>
+
+  <button class="normal-button" mat-button (click)="closeDialog()">Close</button>
+  <button class="normal-button" mat-button (click)="clearBasket()">Ryd kurven</button>
+  <button class="normal-button">Betal</button>
+</div>
