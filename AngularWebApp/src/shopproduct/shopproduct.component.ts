@@ -44,27 +44,39 @@ export class ShopproductComponent implements OnInit {
       this.shopService.getShopById(this.shopId).subscribe(
         (data) => {
           this.shop = data;
+
+          // Fetch all products for the shop
+          this.productService.getProductsByShopId(this.shopId ?? '').subscribe(
+            (productData) => {
+              this.products = productData;
+
+              // Fetch all combos for the shop
+              this.comboService.getCombosByShopId(parseInt(this.shopId ?? '')).subscribe(
+                (comboData) => {
+                  this.combos = comboData;
+                },
+                (error: any) => {
+                  console.error('Error fetching combos for the shop:', error);
+                }
+              );
+            },
+            (error: any) => {
+              console.error('Error fetching products for the shop:', error);
+            }
+          );
         },
-        (error) => {
+        (error: any) => {
           console.error('Error fetching shop details:', error);
         }
       );
-
-      // Fetch all products for the shop
-      this.productService.getProductsByShopId(this.shopId).subscribe(
-        (data) => {
-          this.products = data;
-        },
-        (error) => {
-          console.error('Error fetching products for the shop:', error);
-        }
-      );
       this.selectedCategory = 'AllProducts';
-
     } else {
       console.error('Shop ID is null');
     }
   }
+
+
+
 
 
 
@@ -102,7 +114,7 @@ export class ShopproductComponent implements OnInit {
           }
         );
       } else if (category === 'AllCombos') {
-        this.comboService.getCombosByShop(shopId).subscribe(
+        this.comboService.getCombosByShopId(shopId).subscribe(
           (data) => {
             this.combos = data;
             console.log('Combos:', this.combos); // Log the combos for debugging
