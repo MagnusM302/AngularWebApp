@@ -4,6 +4,7 @@ import { Ingredient } from './ingredient.interface';
 import { Ingredientproduct } from 'src/ingredientproduct/ingredientproduct.interface';
 import { IngredientproductService } from '../services/ingredientproduct.service';
 import { forkJoin } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-ingredient',
@@ -25,8 +26,10 @@ export class IngredientComponent implements OnInit {
 
   ingredientProducts: Ingredientproduct[] = [];
 
-  constructor(private ingredientService: IngredientService,
-    private ingredientProductService: IngredientproductService
+  constructor(
+    private ingredientService: IngredientService,
+    private ingredientProductService: IngredientproductService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -78,16 +81,28 @@ export class IngredientComponent implements OnInit {
     return result || { count: 0, min: 0, max: 0, productId: this.productId, ingredientId: ingredient.id }; // Return a default object if not found
   }
 
-
   decreaseIngredientQuantity(ingredientProduct: Ingredientproduct): void {
     if (ingredientProduct && ingredientProduct.count > ingredientProduct.min) {
       ingredientProduct.count--;
+    } else {
+      this.showSnackBar('Ikke tilladt at fjerne flere');
     }
   }
 
   increaseIngredientQuantity(ingredientProduct: Ingredientproduct): void {
     if (ingredientProduct && ingredientProduct.count < ingredientProduct.max) {
       ingredientProduct.count++;
+    } else {
+      this.showSnackBar('Ikke tilladt at tilføje flere');
     }
+  }
+
+  // Function to show snack bar
+  showSnackBar(message: string): void {
+    this.snackBar.open(message, 'Close', {
+      duration: 5000, // 3 seconds
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+    });
   }
 }

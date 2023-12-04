@@ -12,6 +12,7 @@ import { IngredientModule } from 'src/ingredient/ingredient.module';
 import { ProductListComponent } from '../product/product-list/product-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [AppComponent, MenuComponent],  
@@ -30,7 +31,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     AppRoutingModule,
     IngredientModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
