@@ -100,7 +100,7 @@ export class IngredientComponent implements OnInit {
   // Function to show snack bar
   showSnackBar(message: string): void {
     this.snackBar.open(message, 'Close', {
-      duration: 5000, // 3 seconds
+      duration: 5000, // 5 seconds
       horizontalPosition: 'center',
       verticalPosition: 'bottom',
     });
