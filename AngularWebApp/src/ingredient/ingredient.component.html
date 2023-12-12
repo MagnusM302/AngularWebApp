@@ -1,10 +1,10 @@
-<div *ngFor="let ingredient of ingredients">
-  <div>
-    <p>{{ ingredient.name }}</p>
+<div *ngFor="let ingredient of ingredients" class="ingredient-container">
+  <div class="ingredient-content">
+    <p><b>{{ ingredient.name }}</b> - Ekstra: {{ ingredient.ingredientPrice }} kr.</p>
     <img [src]="'https://localhost:7046/api/upload/GetImage/' + ingredient.imageName" alt="{{ ingredient.name || 'N/A' }}" class="ingredient-image">
 
-    <div>
-      <p>Quantity: {{ getIngredientProduct(ingredient)?.count || 0 }}</p>
+    <div class="quantity-container">
+      <p>Antal: {{ getIngredientProduct(ingredient)?.count || 0 }}</p>
       <button (click)="decreaseIngredientQuantity(getIngredientProduct(ingredient))">-</button>
       <button (click)="increaseIngredientQuantity(getIngredientProduct(ingredient))">+</button>
     </div>
