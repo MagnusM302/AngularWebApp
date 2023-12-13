@@ -4,7 +4,7 @@
     <img [src]="'https://localhost:7046/api/upload/GetImage/' + ingredient.imageName" alt="{{ ingredient.name || 'N/A' }}" class="ingredient-image">
 
     <div class="quantity-container">
-      <p>Antal: {{ getIngredientProduct(ingredient)?.count || 0 }}</p>
+      <p>Antal: {{ getIngredientProduct(ingredient).count || 0 }}</p>
       <button (click)="decreaseIngredientQuantity(getIngredientProduct(ingredient))">-</button>
       <button (click)="increaseIngredientQuantity(getIngredientProduct(ingredient))">+</button>
     </div>
